@@ -13,17 +13,38 @@ void PrintIntroduction(int Difficulty) {
     std::cout << "Current self-destruct level: " << Difficulty << std::endl << std::endl;
 }
 
+void PrintIntroArt() {
+    std::cout << "'##::: ##:'########:'########:: ##::::::::::'###::::'########:::::\n";        
+    std::cout << "###:: ##: ##.....:: ##.... ##:  ##:::::::::'## ##::: ##.... ##::::\n";        
+    std::cout << "####: ##: ##::::::: ##:::: ##:  ##::::::::'##:. ##:: ##:::: ##::::\n";        
+    std::cout << "## ## ##: ######::: ########::  ##:::::::'##:::. ##: ########:::::\n";        
+    std::cout << "##. ####: ##...:::: ##.... ##:  ##::::::: #########: ##.. ##::::::\n";        
+    std::cout << "##:. ###: ##::::::: ##:::: ##:  ##::::::: ##.... ##: ##::. ##:::::\n";        
+    std::cout << "##::. ##: ########: ########::. :########: ##:::: ##: ##:::. ##::::\n";        
+    std::cout << "..::::..::........::........::::.......:::........::..:::::..::..:::::..:::::\n";        
+    std::cout << ":'######:::::'###::::'########:::'#######::'########::::'###:::::'######:::'########:\n";
+    std::cout << "'##... ##:::'## ##::: ##.... ##:'##.... ##:... ##..::::'## ##:::'##... ##:: ##.....::\n";
+    std::cout << "##:::..:::'##:. ##:: ##:::: ##: ##:::: ##:::: ##:::::'##:. ##:: ##:::..::: ##:::::::\n";
+    std::cout << ". ######::'##:::. ##: ########:: ##:::: ##:::: ##::::'##:::. ##: ##::'####: ######:::\n";
+    std::cout << ":..... ##: #########: ##.... ##: ##:::: ##:::: ##:::: #########: ##::: ##:: ##...::::\n";
+    std::cout << "'##::: ##: ##.... ##: ##:::: ##: ##:::: ##:::: ##:::: ##.... ##: ##::: ##:: ##:::::::\n";
+    std::cout << ". ######:: ##:::: ##: ########::. #######::::: ##:::: ##:::: ##:. ######::: ########:\n";
+    std::cout << ":......:::..:::::..::........::::.......::::::..:::::..:::::..:::......::::........::\n";
+}
+
 bool PlayGame(int Difficulty) {
    
-    // PrintIntroArt();
     PrintIntroduction(Difficulty);
     // Declare 3 number code
-    const int CodeA = rand() % Difficulty + Difficulty;
-    const int CodeB = rand() % Difficulty + Difficulty;
-    const int CodeC = rand() % Difficulty + Difficulty;
+    const int CodeA =  rand() % Difficulty + Difficulty;
+    const int CodeB =  rand() % Difficulty + Difficulty;
+    const int CodeC =  rand() % Difficulty + Difficulty;
 
     const int CodeSum = CodeA + CodeB + CodeC;
     const int CodeProduct = CodeA * CodeB * CodeC;
+
+    int WrongAnswers = 0;
+
 
     // Print sum and product to the terminal
     std::cout << "+ There are 3 numbers in the code\n";
@@ -49,6 +70,8 @@ bool PlayGame(int Difficulty) {
     } 
     else {
         std::cout << "*** Incorrect! Time is running out. Try again... ***\n";
+        std::cout << "You have " << WrongAnswers;
+        ++WrongAnswers;
         return false;
     }
 }
@@ -62,6 +85,9 @@ int main() {
 
     int LevelDifficulty = 1;
     const int MaxDifficulty = 5;
+
+    PrintIntroArt();
+
 
     while (LevelDifficulty <= MaxDifficulty) { // Loop the game until all levels are completed 
         
